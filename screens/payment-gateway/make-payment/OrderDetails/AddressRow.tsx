@@ -1,9 +1,10 @@
 import React from "react";
-import { TouchableOpacity, Alert } from "react-native";
+import { TouchableOpacity } from "react-native";
 import Clipboard from "@react-native-clipboard/clipboard";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Text from "@/lib/components/Text/Text";
 import { useOrderContext } from "@/screens/payment-gateway/context/OrderContext";
+import isWeb from "@/lib/utils/isWeb";
 
 const AmountRow = () => {
   const { order } = useOrderContext();
@@ -23,7 +24,14 @@ const AmountRow = () => {
         gap: 4,
       }}
     >
-      <Text style={{ fontSize: 14, lineHeight: 20, color: "#002859" }}>
+      <Text
+        style={{
+          fontSize: isWeb ? 14 : 12,
+          lineHeight: 20,
+          color: "#002859",
+          fontStyle: isWeb ? "normal" : "italic",
+        }}
+      >
         {address}
       </Text>
 

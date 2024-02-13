@@ -4,6 +4,7 @@ import Text from "./Text/Text";
 import { router } from "expo-router";
 import { FontAwesome5 } from "@expo/vector-icons";
 import ROUTES from "@/lib/constants/routes";
+import isWeb from "@/lib/utils/isWeb";
 
 const FinalStatusOverlay = ({ success }: { success: boolean }) => {
   return (
@@ -48,8 +49,8 @@ const FinalStatusOverlay = ({ success }: { success: boolean }) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: 490,
-    height: 420,
+    width: isWeb ? 490 : "90%",
+    height: isWeb ? 420 : 430,
     padding: 32,
     borderRadius: 16,
     borderWidth: 1,
@@ -79,7 +80,7 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     width: 426,
-    height: 25,
+    height: isWeb ? 25 : 38,
     fontSize: 20,
     lineHeight: 25,
     letterSpacing: 0,
@@ -91,7 +92,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   bodyText: {
-    width: 360,
+    width: isWeb ? 360 : 300,
     height: 72,
     fontSize: 16,
     lineHeight: 24,

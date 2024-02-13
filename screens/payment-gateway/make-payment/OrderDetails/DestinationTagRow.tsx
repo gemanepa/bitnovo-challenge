@@ -1,6 +1,5 @@
 import React from "react";
 import { TouchableOpacity, Image } from "react-native";
-import Clipboard from "@react-native-clipboard/clipboard";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Text from "@/lib/components/Text/Text";
 import { useOrderContext } from "@/screens/payment-gateway/context/OrderContext";
@@ -9,8 +8,7 @@ const AmountRow = () => {
   const { order } = useOrderContext();
   const { tag_memo } = order;
 
-  const handleCopyPress = () =>
-    tag_memo && Clipboard.setString(tag_memo.toString());
+  const handleCopyPress = () => tag_memo && console.log(tag_memo);
 
   return (
     <TouchableOpacity

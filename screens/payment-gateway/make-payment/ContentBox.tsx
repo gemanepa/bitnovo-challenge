@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import { View, StyleSheet } from "react-native";
+import isWeb from "@/lib/utils/isWeb";
 
 interface ContentBoxProps {
   children: ReactNode;
@@ -14,7 +15,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "space-between",
     alignItems: "center",
-    width: 583,
+    width: isWeb ? 583 : "100%",
     minHeight: 530,
     height: 530,
     padding: 32,

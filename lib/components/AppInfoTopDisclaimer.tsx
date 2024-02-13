@@ -1,8 +1,10 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 import Text from "@/lib/components/Text/Text";
+import isWeb from "../utils/isWeb";
 
 const AppInfoTopDisclaimer = () => {
+  if (!isWeb) return null;
   return (
     <View style={styles.container}>
       <Text style={styles.text}>

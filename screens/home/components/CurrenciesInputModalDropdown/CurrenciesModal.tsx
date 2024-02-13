@@ -11,6 +11,7 @@ import { useCreateOrderFormContext } from "@/screens/home/context/CreateOrderFor
 import { TCurrency } from "@/types/business";
 import { AntDesign } from "@expo/vector-icons";
 import CurrencyItem from "./CurrencyItem";
+import isWeb from "@/lib/utils/isWeb";
 
 const CurrenciesModal: React.FC<{
   isModalOpen: boolean;
@@ -21,7 +22,10 @@ const CurrenciesModal: React.FC<{
   const { setCurrency: setOrderCurrency } = useCreateOrderFormContext();
   const [searchQuery, setSearchQuery] = useState<string>("");
 
-  if (!currencies.length) return null;
+  if (!currencies.length) {
+    if (searchQuery.length > 0) setSearchQuery("");
+    return null;
+  }
 
   const filteredCurrencies = currencies.filter((currency) =>
     currency.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -81,7 +85,7 @@ const currenciesModalStyles = StyleSheet.create({
     alignItems: "center",
   },
   modalContainer: {
-    width: 673,
+    width: isWeb ? 673 : "90%",
     height: 588,
     padding: 24,
     borderRadius: 12,

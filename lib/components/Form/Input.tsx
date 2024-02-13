@@ -1,6 +1,7 @@
 import React from "react";
 import { View, TextInput, StyleSheet } from "react-native";
 import InputLabel from "./InputLabel";
+import isWeb from "@/lib/utils/isWeb";
 
 interface InputProps {
   label: string;
@@ -35,6 +36,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "space-between",
     gap: 6,
+    width: isWeb ? 609 : "100%",
   },
   input: {
     fontFamily: "Mulish-Light",
@@ -44,7 +46,7 @@ const styles = StyleSheet.create({
     letterSpacing: 0.01,
     textAlign: "left",
     color: "#002859",
-    width: 609,
+    width: isWeb ? 609 : "100%",
     height: 56,
     paddingVertical: 18,
     paddingHorizontal: 12,

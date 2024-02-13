@@ -2,6 +2,7 @@ import React from "react";
 import { TouchableOpacity, ActivityIndicator, StyleSheet } from "react-native";
 import { useCreateOrderFormContext } from "@/screens/home/context/CreateOrderFormContext";
 import Text from "../../../lib/components/Text/Text";
+import isWeb from "@/lib/utils/isWeb";
 
 const ContinueBtn: React.FC = () => {
   const { isFormValid, submitForm, isLoading } = useCreateOrderFormContext();
@@ -28,7 +29,7 @@ const ContinueBtn: React.FC = () => {
 
 const styles = StyleSheet.create({
   button: {
-    width: 609,
+    width: isWeb ? 609 : "100%",
     height: "auto",
     paddingVertical: 18,
     paddingHorizontal: 24,

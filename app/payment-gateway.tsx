@@ -2,8 +2,8 @@ import { StyleSheet } from "react-native";
 import { View } from "@/lib/components/Themed";
 import MakePaymentSection from "@/screens/payment-gateway/make-payment";
 import OrderSummarySection from "@/screens/payment-gateway/order-summary";
-
 import { OrderProvider } from "@/screens/payment-gateway/context/OrderContext";
+import isWeb from "@/lib/utils/isWeb";
 
 export default function PaymentGatewayPage() {
   return (
@@ -20,17 +20,19 @@ export default function PaymentGatewayPage() {
 
 const styles = StyleSheet.create({
   flex: {
-    flex: 1,
+    flexGrow: 1,
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
+    height: isWeb ? "100%" : "200%",
   },
   container: {
-    flex: 1,
-    justifyContent: "center",
-    gap: 32,
-    flexDirection: "row",
-    width: 1198,
-    maxHeight: 579,
+    flexGrow: isWeb ? 0 : 1,
+    justifyContent: isWeb ? "center" : "flex-start",
+    gap: isWeb ? 32 : 42,
+    paddingTop: isWeb ? "0%" : "25%",
+    paddingHorizontal: isWeb ? "0%" : "5%",
+    flexDirection: isWeb ? "row" : "column",
+    width: isWeb ? 1198 : "100%",
   },
 });

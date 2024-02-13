@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { router } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import createOrder from "@/api/create_order";
@@ -8,6 +8,7 @@ import {
   TOrder_Created_Response,
 } from "@/types/business";
 import ROUTES from "@/lib/constants/routes";
+import { DynamicScreenHeightContext } from "@/lib/context/DynamicScreenHeightContext";
 
 const useCreateOrderForm = () => {
   const [amount, setAmount] = useState<number | null>(null);
@@ -23,6 +24,8 @@ const useCreateOrderForm = () => {
   const [concept, setConcept] = useState<string>("");
   const [isFormValid, setIsFormValid] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const { setScreenHeight } = useContext(DynamicScreenHeightContext);
 
   useEffect(() => {
     const isValidAmount = typeof amount === "number" && amount > 0;
@@ -74,7 +77,9 @@ const useCreateOrderForm = () => {
       const secureStorageBeforeNav = setInterval(async () => {
         const order = await AsyncStorage.getItem("order");
         if (order !== null) {
+          setScreenHeight(1350);
           clearInterval(secureStorageBeforeNav);
+
           router.navigate(ROUTES.PAYMENT_GATEWAY);
         }
       }, 200);

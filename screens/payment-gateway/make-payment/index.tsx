@@ -9,6 +9,7 @@ import PaymentCountdown from "@/screens/payment-gateway/make-payment/ExpirationC
 import QRPaymentCode from "@/screens/payment-gateway/make-payment/QRPaymentCode";
 import MetamaskSquare from "./MetamaskWallet";
 import OrderDetails from "./OrderDetails";
+import isWeb from "@/lib/utils/isWeb";
 
 export default function MakePaymentSection() {
   const [activeButton, setActiveButton] = useState("SmartQR");
@@ -41,8 +42,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
-    gap: 24,
-    maxHeight: 579,
+    gap: isWeb ? 24 : 8,
+    maxHeight: isWeb ? 579 : 630,
   },
   sectionDescription: {
     flex: 1,

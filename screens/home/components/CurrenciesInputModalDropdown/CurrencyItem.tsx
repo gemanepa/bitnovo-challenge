@@ -15,10 +15,12 @@ const CurrencyItem: React.FC<{
       style={currencyItemStyles.container}
     >
       <View style={currencyItemStyles.currencyItem}>
-        <Image
-          source={{ uri: currency.image }}
-          style={currencyItemStyles.currencyImage}
-        />
+        {currency.image && (
+          <Image
+            source={{ uri: currency.image }}
+            style={currencyItemStyles.currencyImage}
+          />
+        )}
         <View style={currencyItemStyles.currencyInfo}>
           <Text style={currencyItemStyles.currencyName} weight="Bold">
             {currency.name}

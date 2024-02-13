@@ -1,18 +1,17 @@
-import { useEffect } from "react";
+import { useEffect, useState, useRef } from "react";
+import { ScrollView, StyleSheet } from "react-native";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import {
-  DarkTheme,
-  DefaultTheme,
-  ThemeProvider,
-} from "@react-navigation/native";
+import { DefaultTheme, ThemeProvider } from "@react-navigation/native";
 import { useFonts } from "expo-font";
-import { Stack } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useColorScheme } from "@/lib/hooks/useColorScheme";
 import { deviceId } from "@/lib/constants/business";
 import Text from "@/lib/components/Text/Text";
 import BitnovoDisclaimer from "@/lib/components/BitnovoDisclaimer";
 import AppInfoTopDisclaimer from "@/lib/components/AppInfoTopDisclaimer";
+import { DynamicScreenHeightContext } from "@/lib/context/DynamicScreenHeightContext";
+import isWeb from "@/lib/utils/isWeb";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -58,24 +57,58 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
+  const [screenHeight, setScreenHeight] = useState(0);
   const colorScheme = useColorScheme();
+  const scrollViewRef = useRef<ScrollView>(null);
+  const scrollToTop = () => {
+    scrollViewRef?.current?.scrollTo({ y: 0, animated: true });
+  };
+
+  useEffect(() => {
+    if (screenHeight) {
+      scrollToTop();
+    }
+  }, [screenHeight]);
 
   return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      {!deviceId && (
-        <Text weight="Bold" style={{ textAlign: "center" }}>
-          Device ID not found. Please make sure to set EXPO_PUBLIC_DEVICE_ID on
-          .env file to make server requests.
-        </Text>
-      )}
+    <ThemeProvider value={DefaultTheme}>
+      <DynamicScreenHeightContext.Provider value={{ setScreenHeight }}>
+        <ScrollView
+          ref={scrollViewRef}
+          style={{ flex: 1 }}
+          contentContainerStyle={[
+            styles.container,
+            { height: screenHeight && !isWeb ? screenHeight : "100%" },
+          ]}
+        >
+          {isWeb && !deviceId && (
+            <Text weight="Bold" style={{ textAlign: "center" }}>
+              Device ID not found. Please make sure to set EXPO_PUBLIC_DEVICE_ID
+              on .env file to make server requests.
+            </Text>
+          )}
 
-      <Stack
-        screenOptions={{
-          headerShown: false,
-        }}
-      />
-      <AppInfoTopDisclaimer />
-      <BitnovoDisclaimer />
+          <Stack
+            screenOptions={{
+              headerShown: false,
+            }}
+          />
+          <AppInfoTopDisclaimer />
+          <BitnovoDisclaimer />
+        </ScrollView>
+      </DynamicScreenHeightContext.Provider>
     </ThemeProvider>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flexGrow: 1,
+    paddingVertical: 20,
+    paddingHorizontal: 10,
+    height: "100%",
+  },
+  scrollHeight: {
+    height: 1350,
+  },
+});

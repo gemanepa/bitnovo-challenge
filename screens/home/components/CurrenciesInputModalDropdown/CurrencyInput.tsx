@@ -3,6 +3,7 @@ import { View, TouchableOpacity, StyleSheet, Image } from "react-native";
 import Text from "@/lib/components/Text/Text";
 import { TCurrency } from "@/types/business";
 import { Feather } from "@expo/vector-icons";
+import isWeb from "@/lib/utils/isWeb";
 
 const CurrencyInput: React.FC<{
   label: string;
@@ -27,10 +28,12 @@ const CurrencyInput: React.FC<{
       >
         {orderCurrency ? (
           <>
-            <Image
-              source={{ uri: orderCurrency.image }}
-              style={currencyInputStyles.currencyImage}
-            />
+            {orderCurrency.image && (
+              <Image
+                source={{ uri: orderCurrency.image }}
+                style={currencyInputStyles.currencyImage}
+              />
+            )}
             <Text style={currencyInputStyles.currencyName} weight="Light">
               {orderCurrency.name}
             </Text>
@@ -76,7 +79,7 @@ const currencyInputStyles = StyleSheet.create({
     letterSpacing: 0.01,
     textAlign: "left",
     color: "#002859",
-    width: 609,
+    width: isWeb ? 609 : "100%",
     height: 56,
     paddingVertical: 18,
     paddingHorizontal: 12,

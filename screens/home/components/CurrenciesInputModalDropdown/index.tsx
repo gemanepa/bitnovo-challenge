@@ -6,7 +6,7 @@ import { useCreateOrderFormContext } from "@/screens/home/context/CreateOrderFor
 import { TCurrency } from "@/types/business";
 import CurrencyInput from "./CurrencyInput";
 import CurrenciesModal from "./CurrenciesModal";
-
+import isWeb from "@/lib/utils/isWeb";
 interface InputWithModalProps {
   label: string;
 }
@@ -68,6 +68,7 @@ const inputWithModalStyles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "space-between",
     zIndex: 100,
+    width: isWeb ? 609 : "100%",
   },
 });
 

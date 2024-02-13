@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, TouchableOpacity, StyleSheet } from "react-native";
 import Text from "@/lib/components/Text/Text";
+import isWeb from "@/lib/utils/isWeb";
 
 type ButtonSwitcherProps = {
   activeButton: string;
@@ -62,7 +63,7 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   button: {
-    height: 32,
+    height: isWeb ? 32 : 38,
     width: 98,
     paddingHorizontal: 6,
     paddingVertical: 10,

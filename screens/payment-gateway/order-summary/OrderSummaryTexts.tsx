@@ -34,7 +34,11 @@ const OrderSummaryTexts: React.FC = () => {
       <SummaryRow
         label="Moneda seleccionada"
         value={input_currency}
-        img={<Image source={{ uri: currency_img }} style={styles.icon} />}
+        img={
+          currency_img && (
+            <Image source={{ uri: currency_img }} style={styles.icon} />
+          )
+        }
       />
       {(merchant_device || created_at || notes) && <Divider />}
     </>

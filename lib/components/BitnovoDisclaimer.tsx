@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Image, StyleSheet } from "react-native";
+import isWeb from "@/lib/utils/isWeb";
 
 const BitnovoDisclaimer = () => {
   return (
@@ -22,7 +23,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   image: {
-    marginBottom: 16,
+    marginBottom: isWeb ? 16 : 24,
+    width: 350,
+    resizeMode: "contain",
   },
 });
 
