@@ -2,11 +2,9 @@
 
 Multiplatform (iOS, Android & Web) Cryptocurrency Payment Gateway MVP App build using React Native + Expo + Typescript
 
-
-Android APK: https://expo.dev/artifacts/eas/8NQHUio73APyUgshpNAczY.apk
+Android APK: https://expo.dev/artifacts/eas/wL2bxrBcV7Wvp1GfB684Ly.apk
 
 Web Vercel Deployment: https://bitnovo-challenge-gemanepa.vercel.app/
-
 
 Vid iOS: https://youtu.be/SZVMjFtvjPI
 
