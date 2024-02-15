@@ -7,7 +7,7 @@ function AmountInput() {
     <Input
       label="Importe a pagar"
       placeholder="Añade importe a pagar"
-      onChangeText={(text) => setAmount(Number(text))}
+      onChangeText={(text) => setAmount(Number(text.replace(",", ".")))}
       type="number"
     />
   );

@@ -24,7 +24,7 @@ const Input: React.FC<InputProps> = ({
         placeholder={placeholder}
         placeholderTextColor="#647184"
         onChangeText={onChangeText}
-        keyboardType={type === "number" ? "number-pad" : "default"}
+        keyboardType={type === "number" ? "numeric" : "default"}
       />
     </View>
   );
