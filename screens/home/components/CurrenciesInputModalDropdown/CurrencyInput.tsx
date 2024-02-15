@@ -28,18 +28,21 @@ const CurrencyInput: React.FC<{
       >
         {orderCurrency ? (
           <>
-            {orderCurrency.image && (
-              <Image
-                source={{ uri: orderCurrency.image }}
-                style={currencyInputStyles.currencyImage}
-              />
-            )}
-            <Text style={currencyInputStyles.currencyName} weight="Light">
-              {orderCurrency.name}
-            </Text>
-            <Text style={currencyInputStyles.currencySymbol} weight="Light">
-              {orderCurrency.symbol}
-            </Text>
+            <View style={currencyInputStyles.selectedCurrencyContainer}>
+              {orderCurrency.image && (
+                <Image
+                  source={{ uri: orderCurrency.image }}
+                  style={currencyInputStyles.currencyImage}
+                />
+              )}
+              <Text style={currencyInputStyles.currencyName} weight="Light">
+                {orderCurrency.name}
+              </Text>
+              <Text style={currencyInputStyles.currencySymbol} weight="Light">
+                {orderCurrency.symbol}
+              </Text>
+            </View>
+
             <View style={currencyInputStyles.chevronContainer}>
               <Feather name="chevron-down" size={20} color="#647184" />
             </View>
@@ -88,6 +91,14 @@ const currencyInputStyles = StyleSheet.create({
     borderColor: "#E5E9F2",
     flexDirection: "row",
     alignItems: "center",
+    gap: 8,
+  },
+  selectedCurrencyContainer: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    maxWidth: "90%",
+    overflow: "hidden",
     gap: 8,
   },
   chevronContainer: {

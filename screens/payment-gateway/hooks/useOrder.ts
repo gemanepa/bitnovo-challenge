@@ -51,7 +51,10 @@ export default function useOrder() {
       }
     };
 
-    if (storagedOrder?.identifier) retrieveOrderInfo();
+    if (storagedOrder?.identifier) {
+      retrieveOrderInfo();
+      setInterval(retrieveOrderInfo, 30000);
+    }
 
     return () => {};
   }, [storagedOrder?.identifier]);
