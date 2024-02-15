@@ -5,10 +5,11 @@
   "scripts": {
     "start": "expo start",
     "android": "expo run:android",
+    "android:switch-device": "npx expo run:android -d",
     "ios": "expo run:ios",
+    "ios:pod-install": "npx pod-install",
     "web": "expo start --web",
-    "test": "jest --watchAll",
-    "pod-install": "npx pod-install"
+    "test": "jest --watchAll"
   },
   "jest": {
     "preset": "jest-expo"
